@@ -1,0 +1,19 @@
+{% extends 'Doctor/doctor_navbar.html' %}
+
+{% block content %}
+    <center>
+        {% if searched %}
+            <h2>Appointment ID - {{ searched }}</h2>
+            <br>
+            {% for i in a %}
+                <a href="#">{{ i }}</a> 
+                
+                {% url 'doctor_search_appointment' %}
+            {% endfor %}
+            <br>
+        {% else %}
+            <h2>Nothing's been searched!</h2>
+        {% endif %}
+    </center>
+
+{% endblock content%}

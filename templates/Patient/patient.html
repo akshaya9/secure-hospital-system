@@ -1,0 +1,134 @@
+{% extends 'base.html' %} {% block navigation %}
+<li>
+  <a href="{% url 'patient_appointment' user.username %}">Appointments</a>
+</li>
+<li>
+  <a href="{% url 'patient_diagnosis' user.username %}">Diagnosis</a>
+</li>
+<li>
+  <a href="{% url 'patient_prescription' user.username %}">Prescription</a>
+</li>
+<li>
+  <a href="{% url 'patient_labtest' user.username %}">Lab Tests</a>
+</li>
+<li>
+  <a href="{% url 'patient_details' user.username %}">Patient Details</a>
+</li>
+<li>
+  <a href="{% url 'patient_payments' user.username %}">Payment and Transactions</a>
+</li>
+
+{% endblock navigation %} 
+
+{% block content %}
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-xl-6">
+      <div class="card-block">
+        <a href="patient_appointment/patient-view-appointment/{{user.username}}">
+          <h4 class="m-b-20">View Your Appointment</h4>
+        </a>
+        <h1 class="text-right"><i class="fas fa-calendar f-left"></i></h1>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-xl-6">
+      <div class="card-block">
+        <a href="patient_appointment/patient_book_appointment/{{user.username}}">
+          <h4 class="m-b-20">Book Appointment</h4>
+        </a>
+        <h1 class="text-right"><i class="fas fa-book-medical f-left"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+{% block chatbot %}
+
+<button class="open-button" onclick="openForm()" style="background-color:rgb(75, 167, 224);">Chat</button>
+
+<div class="chat-popup" id="myForm">
+  <form action="/patient" class="form-container">
+    <h1 class="color_font">Chat</h1>
+    
+    <label class="color_fontx" for="msg"><b>Message</b></label>
+    <div id="userInput" style="background-color:rgb(11, 13, 14);">
+      <textarea class="color_font"
+      id="textInput"
+      placeholder="Type your message"
+      name="msg"
+      rows="10"
+      cols="50"
+      required
+      ></textarea>
+      <p class = "color_font_white" id="textoutput" name="textoutput"></p>
+      
+      <button type="submit" onclick="getResponse()" class="btn">Send</button>
+      <button
+      type="button"
+      id="buttonInput"
+      class="btn cancel"
+      onclick="closeForm()"
+      >
+      Close
+    </button>
+  </div>
+</form>
+</div>
+
+<script>
+  function openForm() {
+    document.getElementById('myForm').style.display = 'block';
+  }
+  
+  function closeForm() {
+    document.getElementById('myForm').style.display = 'none';
+  }
+</script>
+
+<script>
+  function getResponse() {
+    let userText = $('#textInput').val();
+    document
+    .getElementById('userInput')
+    .scrollIntoView({ block: 'start', behavior: 'smooth' });
+    $.get('/bot', { msg: userText }).done(function (data) {
+      console.log(data);
+      $('#textoutput').val('');
+      if (data.startsWith('Navigate')) {
+        var user = '{{user.username}}';
+        var temp = data.substring(12);
+        var temp2 = data.substring(35);
+        var finalurl = temp + '/' + user;
+        
+        var botHtml =
+        '<p>Go to:<a href="' + finalurl + '">' + temp2 + '</a></p>';
+        document.getElementById('textoutput').innerHTML = botHtml;
+        $('#textoutput').innerHtml = botHtml;
+      } else {
+        var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+        document.getElementById('textoutput').innerHTML = botHtml;
+        $('#textoutput').innerHtml = botHtml;
+      }
+      document
+      .getElementById('userInput')
+      .scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+    $('#textInput').val('');
+  }
+  $('#textInput').keypress(function (e) {
+    //if enter key is pressed
+    if (e.which == 13) {
+      getResponse();
+    }
+  });
+  $('#buttonInput').click(function () {
+    getResponse();
+  });
+</script>
+{% endblock chatbot %}
+
+

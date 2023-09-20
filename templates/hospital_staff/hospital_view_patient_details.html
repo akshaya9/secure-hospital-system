@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% block title %}Hospital Staff{% endblock %} {% block navigation %}
+<li>
+    <a href="{% url 'hospital_staff_appointments' %} ">
+    Appointments</a
+  >
+</li>
+<li>
+  <a
+    href="{% url 'hospital_staff_create_payment' %} "
+  >
+    Create Payment</a
+  >
+</li>
+<li>
+  <a
+    href="{% url 'hospital_search_patients' %} "
+  >
+    View Patient Records</a
+  >
+</li>
+<li>
+  <a href="{% url 'hospital_generate_bill' %} ">
+      Generate Bill</a
+  >
+</li>
+{% endblock %}
+{% block content%}
+    <div>
+        <p>Patient ID: {{ patient_details.patientID }}</p>
+        <p>Patient Name: {{ patient_details.name }}</p>
+        <p>Patient Age: {{ patient_details.age}}</p>
+        <p>Patient Gender: {{ patient_details.gender }}</p>
+        <p>Patient Height: {{ patient_details.height }}</p>
+        <p>Patient Weight: {{ patient_details.weight }}</p>
+        <p>Patient Insurace ID: {{ patient_details.insuranceID }}</p>
+        <a href="{% url 'hospital_update_patients' patient_details.patientID %}"> <button>Edit</span></button></a>
+    <br><br> {% for app in appointment_details %}
+    <li>
+        <p>Appointment ID: {{ app.appointmentID }}</p>
+        <p>Appointment Date: {{ app.date }}</p>
+        <p>Appointment Time: {{ app.time }}</p>
+        <p>Appointment Type: {{ app.type }}</p>
+        <p>Doctor Name: {{ app.doctorName }}</p>
+        <p>Appointment Status: {{ app.status }}</p>
+        <p>Diagnosis : {{ app.diagnosis }}</p>
+        <p>Prescription: {{ app.prescription }}</p>
+        <p>Appointment Created On: {{ app.created_on }}</p>
+    </li>
+    {% endfor %}
+    <br><br> {% for test in test_details %}
+    <li>
+        <p>Test ID: {{ test.testID }}</p>
+        <p>Test Date: {{ test.date }}</p>
+        <p>Test Time: {{ test.time }}</p>
+        <p>Test Type: {{ test.type }}</p>
+        <p>Test Status: {{ test.status }}</p>
+        <p>Test Result: {{test.result}}</p>
+        <a href="{% url 'hospital_view_lab_report' test.testID %}"><i class="fa fa-file-pdf-o">View Lab Test Report</i> </a>
+    </li>
+    {% endfor %}
+    </div>
+    {% endblock %}

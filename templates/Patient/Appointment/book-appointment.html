@@ -1,0 +1,34 @@
+{% extends 'Patient/patient.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+      <div class="note">
+        <p>Book Appointment</p>
+      </div>
+      <div class="form-content">
+            <div class="form-group">
+            <label for="">patientID: <span class="tab"></span> {{user.username}}</label>
+            <br></div>
+            {% render_field appointmentForm.doctorID class="form-control" placeholder="doctorID" %}
+            {% comment %} <div class="form-group">
+                <label for="Type of test">Choose the type of Appointment:</label>
+                <select class="color_font" name="doctorID" id="doctorID">
+                <option class="color_font" value="doctor1">doctor1</option>
+                <option class="color_font" value="Doctor2">Doctor2</option>
+                <option class="color_font" value="Doctor3">General Doctor</option>
+                </select>
+            </div> {% endcomment %}
+            <br>
+            <div class="form-group">
+                <input type="date" name="date" id="date" required>
+                <input type="time" name="time" id="time" min="09:00" max="18:00" required> 
+            </div>
+        </div>
+        <button type="submit" class="btnSubmit" class="primary">Request</button>
+      </div>
+</form>
+{% endblock content %}
+
+
+

@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block title %}Hospital Staff{% endblock %} {% block navigation %}
+<li class="active">
+    <a href="{% url 'hospital_staff_appointments' %} "> Appointments</a>
+</li>
+<li>
+    <a href="{% url 'hospital_staff_create_payment' %} "> Create Payment</a>
+</li>
+<li>
+    <a href="{% url 'hospital_search_patients' %} "> View Patient Records</a>
+</li>
+<li>
+    <a href="{% url 'hospital_generate_bill' %} ">
+        Generate Bill</a
+    >
+</li>
+{% endblock %} {% block content%}
+<div id="Appointments">
+    {% for app in appointments %}
+    <li>
+        <p>Patient Name: {{ app.patientName }}</p>
+        <p>Type: {{ app.type}}</p>
+        <p>Date: {{ app.date}}</p>
+        <p>Time: {{ app.time}}</p>
+        <p>Doctor: {{ app.doctorName }}</p>
+        <p>Status: {{ app.status }}</p>
+        <a href="{% url 'hospital_appointment_approve' app.appointmentID %}">Approve</a
+    >
+    <a
+      href="{% url 'hospital_appointment_reject' app.appointmentID %}">Reject</a>
+</li>
+{% endfor %}
+</div>
+
+{% if not appointments %}
+<h1>There are no more appointments to review</h1>
+{% endif%} {% endblock %}

@@ -1,0 +1,72 @@
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/website.css' %}" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+    <title>{% block title %}User test{% endblock %}</title>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Secure Hospital System</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      {% block navigation %}
+      {% endblock %}
+      </ul>
+
+      {% if user.is_authenticated %}
+          <ul class="nav navbar-nav navbar-right">
+
+            <li><p class="navbar-text">Logged in as <b>{{ user.username }}</b></p><li>
+            <li><a href="/accounts/logout">{% trans "Log out" %}</a> <li>
+          </ul>
+      {% else %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/account/login">Login</a></li>
+                <li><a href="/accounts/register">Register</a></li>
+            </ul>
+      {% endif %}
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="content shadow">
+    {% block content %}
+    {% endblock %}
+</div>
+    {% block chatbot %}
+    {% endblock %}
+<div class="footer">
+    {% block footer %}
+    {% endblock %}
+</div>
+</body>
+</html>

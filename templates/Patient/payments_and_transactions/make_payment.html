@@ -1,0 +1,57 @@
+{% extends 'Patient/patient.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+      <div class="note">
+        <p>Make Payment</p>
+      </div>
+      <div class="form-content">
+            <div class="form-group">
+              <label for="">patientID: <span class="tab"></span> {{patient_payments.patientID.patientID}}</label>
+              <br>
+              <label for="">appointmentID: &nbsp; <span class="tab"></span>  {{patient_payments.appointmentID.appointmentID}}</label>
+              <br>
+              <label for="">Amount:   &ensp;   &emsp; <span class="tab"></span> {{patient_payments.amount}}</label>
+              <br>
+            </div>
+            <div class="form-group">
+                <label for="Mode of Payment">Choose mode for payment:</label>
+                <select name="method" id="method" class="color_font"> 
+                <option value="Cash" class="color_font">Cash</option>
+                <option value="Insurance" class="color_font">Insurance</option>
+                </select>
+          </div>
+          <p>{% render_field payform.otp_token class="form-control" placeholder="OTP token" %}</p>
+            <br/>
+    <div class="simple-keyboard"></div>
+    <br/>
+        <button type="submit" class="btnSubmit">Submit</button>
+  </div>
+</form>
+        <script >
+      const Keyboard = window.SimpleKeyboard.default;
+
+const myKeyboard = new Keyboard({
+  onChange: (input) => onChange(input),
+  onKeyPress: (button) => onKeyPress(button),
+  theme: "hg-theme-default keyboardDark",
+  layout: {
+    default: [
+      "1 2 3 4 5 6 7 8 9 0 {bksp}",
+    ],
+  }
+});
+
+function onChange(input) {
+  document.querySelector('#id_otp_token').value = input;
+}
+
+function onKeyPress(button) {
+}
+
+    </script>
+
+{% endblock content %}

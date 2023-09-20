@@ -1,0 +1,34 @@
+{% extends 'Patient/patient.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+<br><br>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+      <div class="note">
+        <p>Update Patient Details</p>
+      </div>
+      <div class="form-content">
+            <div class="form-group">
+              {% render_field patientForm.name class="form-control" placeholder="name" %}
+            </div>
+            <div class="form-group">
+              {% render_field patientForm.age class="form-control" placeholder="age" %}
+            </div>
+            <div class="form-group">
+              {% render_field patientForm.gender class="form-control" placeholder="Gender" %}
+            </div>
+            <div class="form-group">
+              {% render_field patientForm.height class="form-control" placeholder="Height" %}
+            </div>
+            <div class="form-group">
+                {% render_field patientForm.weight class="form-control" placeholder="Weight" %}
+            </div>
+            <div class="form-group">
+                {% render_field patientForm.insuranceID class="form-control" placeholder="InsuranceID" %}
+            </div>
+        <button type="submit" class="btnSubmit">Update</button>
+      </div>
+</form>
+
+{% endblock content %}

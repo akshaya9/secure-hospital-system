@@ -1,0 +1,29 @@
+
+{% extends 'Patient/patient.html' %}
+{% block content %}
+{%load static%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-xl-6">
+            <div class="card-block">
+                <a href=  "{% url 'patient_view_lab_report' user.username %}" >
+                    <h4>View Your previous lab tests</h4>
+                </a>
+                <h1 class="text-right"><i class="fas fa-file f-left"></i></h1>
+
+            </div>
+        </div>
+
+        <div class="col-md-4 col-xl-6">
+            <div class="card-block">
+                <a href="{% url 'request_labtest' user.username %}">
+                    <h4>Request Lab Test</h4>
+                </a>
+                <h1 class="text-right"><i class="fas fa-flask f-left"></i></h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

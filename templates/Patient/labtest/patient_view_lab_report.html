@@ -1,0 +1,39 @@
+{% extends 'Patient/patient.html' %}
+{% load appointment %}
+{% block content %}
+
+    <br><br>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h6 class="panel-title">Your Lab reports</h6>
+            </div>
+            <table class="table table-hover" id="dev-table">
+                <thead>
+                    <tr>
+                        <th>testID</th>
+                        <th>date</th>
+                        <th>time</th>
+                        <th>appointmentID</th>
+                        <th>type</th>
+                        <!-- <th>patientID</th> -->
+                        <th>status</th>
+                        <th>view report</th>
+                    </tr>
+                </thead>
+                {% for a in lab_test_details %}
+                <tr class="color_font">
+                    <td> {{a.testID}}</td>
+                    <td>{{a.date}}</td>
+                    <td>{{a.time}}</td>
+                    <td>{{Appt|keyvalue:a.diagnosisID.diagnosisID}}</td>
+                    <td>{{a.type}}</td>
+                    <!-- <td> {{a.patientID.patientID}}</td> -->
+                    <td>{{a.status}}</td>
+                    <td> <a href="{% url 'patient_view_single_lab_report' a.testID %}"><i class="fa fa-file-pdf-o"></i> </a></td>
+                </tr>
+                {% endfor %}
+               
+            </table>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,30 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lab Report</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h1> Lab Report:</h1>
+        <br>
+        {% for t in lab_test_details %}
+        <h2>  patientID: {{t.patientID.patientID}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; time: {{t.time}} </h2>
+        <h2>  testID: {{t.testID}} </h2>
+        <h2>  diagnosisID: {{t.diagnosisID.diagnosisID}} </h2>
+        <br>
+        <h2>  type: {{t.type}} </h2>
+        <h2>  status: {{t.status}} </h2>
+        <h2>  result: {{t.result}} </h2>
+        
+        {% endfor %}
+
+    </div>
+</div>
+
+</body>
+</html>
+

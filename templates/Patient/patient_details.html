@@ -1,0 +1,36 @@
+{% extends 'Patient/patient.html' %}
+{% block content %}
+
+  <div class="panel panel-primary">
+    <div style="background-color: black" class="panel-heading">
+      <h6 class="panel-title">Patient</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Height</th>
+          <th>Weight</th>
+          <th>InsuranceID</th>
+          <th>update</th>
+        </tr>
+      </thead>
+      {% for p in patient %}
+      <tr class="black-table-row">
+        <!-- console.log(p) -->
+        <td> {{p.name}}</td>
+        <td> {{p.age}}</td>
+        <td>{{p.gender}}</td>
+        <td>{{p.height}}</td>
+        <td>{{p.weight}}</td>
+        <td>{{p.insuranceID}}</td>
+        <td><a class="btn btn-primary btn-xs" href="update_patient_details/{{user.username}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+
+{% endblock content %}

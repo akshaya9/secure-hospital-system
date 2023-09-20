@@ -1,0 +1,35 @@
+{% extends 'base.html' %} 
+
+ {% block navigation %}
+<li>
+    <a href="{% url 'lab_staff' %} ">Home</a>
+</li>
+<li>
+    <a href="{% url 'lab_staff_search' %} ">View Patient Diagnosis</a>
+</li>
+<li>
+    <a href="{% url 'lab_tests' %} ">Test Records</a>
+</li>
+{% endblock navigation %} 
+
+
+
+ {% block content%}
+ <br> 
+<div id="Appointments ">
+    {% for c in requests %}
+    <li>
+        <p>Patient Name: {{c.PatientName}} </p>
+        <p>Diagnosis: {{ c.Diagnosis}}</p>
+        <p>Test Recommendation: {{ c.Recommendations}}</p>
+        <p>Test Requested by the Patient: {{c.type}}</p>
+        <a href="{% url 'lab_staff_approve' c.diagnosisId c.testID  %}" style="color: black;font-size: 10px;text-decoration: none;padding: 10px;border-style: solid;background-color: gray;">Approve</a>
+        <a href="{% url 'lab_staff_reject' c.testID %}" style="color: black;font-size: 10px;text-decoration: none;padding: 10px;border-style: solid;background-color: gray;">Reject</a>
+    </li>
+    {% endfor %}
+</div>
+{% if not requests%}
+<h2>There are no more claims to review.</h2>
+{%endif%}
+{% endblock content%}
+

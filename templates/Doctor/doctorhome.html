@@ -1,0 +1,26 @@
+{% extends 'Doctor/doctor_navbar.html' %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-xl-6">
+                    <div class="card-block">
+                        <a href="/doctor_view_appointment_view">
+                            <h4 class="m-b-20">View Appointments</h4>
+                        </a>
+                        <h1 class="text-right"><i class="fas fa-calendar f-left"></i></h1>
+    
+                    </div>
+            </div>
+    
+            <div class="col-md-4 col-xl-6">
+                    <div class="card-block">
+                        <a href="/doctor_view_patientlist">
+                            <h4 class="m-b-20">Patient Records</h4>
+                        </a>
+                        <h1 class="text-right"><i class="fas fa-book-medical f-left"></i></h1>
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock content%}

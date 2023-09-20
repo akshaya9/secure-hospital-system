@@ -1,0 +1,41 @@
+{% extends 'Patient/patient.html' %}
+{% block content %}
+   
+<br><br>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h6 class="panel-title">Payments and previous transactions</h6>
+        </div>
+        <table class="table table-hover" id="dev-table">
+            <thead>
+                <tr class="color_font">
+                    <th>paymentID</th>
+                    <th>amount</th>
+                    <th>status</th>
+                    <th>patientID</th>
+                    <th>testID</th>
+                    <th>appointmentID</th>
+                    <th>Make Payment</th>
+                </tr>
+            </thead>
+            {% for a in patient_payments %}
+            <tr class="color_font">
+                
+                <td> {{a.paymentID}} </td>
+                <td>{{a.amount}}</td>
+                <td>{{a.status}}</td>
+                <td> {{a.patientID.patientID}}</td>
+                <td>{{a.testID.testID}}</td>
+                <td>{{a.appointmentID.appointmentID}}</td>
+                {% if a.status == 'completed'%}
+                <td > Completed </td>
+                {% else %}
+                <td > <a href="{% url 'patient_make_payment' a.paymentID %}"><i class="fas fa-wallet"></i> </a> </td>
+                {% endif %}
+            </tr>
+            {% endfor %} 
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

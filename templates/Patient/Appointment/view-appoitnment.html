@@ -1,0 +1,32 @@
+{% extends 'Patient/patient.html' %}
+{% block content %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        <h6 class="panel-title">Your Appointments</h6>
+        </div>
+        <table class="table table-hover" id="dev-table">
+        <thead>
+            <tr class="black-table-row">
+            <th>appointmentID</th>
+            <th>type</th>
+            <th>date</th>
+            <th>time</th>
+            <th>Doctor</th>
+            <th>status</th>
+            
+            </tr>
+        </thead>
+        {% for a in patient_prev_appointments %}
+        <tr class="color_font">
+            <td> {{a.appointmentID}}</td>
+            <td>{{a.type}}</td>
+            <td>{{a.date}}</td>
+            <td>{{a.time}}</td>
+            <td>{{a.doctorID.doctorID}}</td>
+            <td>{{a.status}}</td>
+            
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock content %}

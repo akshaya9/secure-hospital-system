@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block title %}Hospital Staff{% endblock %} {% block navigation %}
+<li>
+    <a href="{% url 'hospital_staff_appointments' %} ">Appointments</a >
+</li>
+<li>
+  <a href="{% url 'hospital_staff_create_payment' %} ">
+    Create Payment</a
+  >
+</li>
+<li>
+  <a
+    href="{% url 'hospital_search_patients' %} "
+  >
+    View Patient Records</a
+  >
+</li>
+<li>
+  <a
+    href="{% url 'hospital_generate_bill' %} "
+  >
+    Generate Bill</a
+  >
+</li>
+{% endblock %}
+{% block content%}
+  {% for p in payment_details %}
+  <li>
+        <p>Payment ID: {{ p.paymentID }}</p>
+        <p>Payment Method: {{ p.method }}</p>
+        <p>Payment Amount: {{ p.amount }}</p>
+        <p>Payment Status: {{ p.status }}</p>
+        <p>Created On: {{ p.created_on }}</p>
+        <a href="{% url 'hospital_bill' p.paymentID %}"><i class="fa fa-file-pdf-o">Generate Bill</i></a>
+</li>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'Doctor/doctor_navbar.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<br><br>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="note">
+          <p>Diagnosis</p>
+        </div>
+        <div class="form-content">
+          <div class="row">
+              <div class="form-group">
+                {% render_field EditDiagnosisForm.diagnosis class="form-control" placeholder="Diagnosis" %}
+              </div>
+              <button type="submit" class="btnSubmit">Edit</button>
+          </div>
+    </div>
+</form>
+
+{% endblock content%}

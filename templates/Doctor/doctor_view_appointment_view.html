@@ -1,0 +1,38 @@
+{% extends 'Doctor/doctor_navbar.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    
+    <br>
+    <h1> Appointments</h1>
+
+    <table>
+        <tr>
+            <th>Appointment ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Doctor ID</th>
+            <th>Type</th>
+            <th>Patient Name</th>
+            <th>Status</th>
+            <th>Test ID</th>
+            <th>Payment ID</th>
+            <th>Book Appointment</th>
+
+          </tr>
+          {% for i in appointments %}
+          <tr>
+            <th> {{ i.appointmentID }}</th>
+            <th> {{ i.date }}</th>
+            <th> {{ i.time }}</th>
+            <th> {{ i.doctorID.doctorID }}</th>
+            <th> {{ i.type }}
+            <th> {{ i.patientName }}</th>
+            <th> {{ i.status }}</th>
+            <th> {{ i.testID.testID }}</th>
+            <th> {{ i.paymentID }}</th>
+            <th> <a href="{% url 'doctor_book_appointment' i.appointmentID %}"> <button style="font-size:18px;color:red"><i class="fa fa-plus" ></i></button></a> </th>
+          </tr> 
+          {% endfor %}
+    </table>
+
+{% endblock content%}

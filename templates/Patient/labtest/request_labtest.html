@@ -1,0 +1,65 @@
+{% extends 'Patient/patient.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<br><br>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+      <div class="note">
+        <p>Request Lab test</p>
+      </div>
+      <div class="form-content">
+            <div  class="form-group">
+              <p> Select Diagnosis for which you want to request the test</p> 
+              <p>{% render_field testform.diagnosisID class="form-control" placeholder="diagnosisID" %} </p>
+            </div>
+            <div class="form-group">
+              <input type="date" name="date" id="date" required >
+            <input type="time" name="time" id="time" min="09:00" max="18:00" required> </div>
+            
+            <div class="form-group">
+            <label for="">patientID: <span class="tab"></span> {{user.username}}</label>
+            <br></div>
+            <div class="form-group">
+                <label for="Type of test">Choose type of test:</label>
+                <select class="color_font" name="type" id="type">
+                <option class="color_font" value="Blood Test">Blood Test</option>
+                <option class="color_font" value="Covid Test">Covid Test</option>
+                <option class="color_font" value="Sugar Test">Sugar Test</option>
+                <option class="color_font" value="Urine Test">Urine Test</option>
+                </select>
+        </div>
+                  <p>{% render_field testform.otp_token class="form-control" placeholder="OTP token" %}</p>
+            <br/>
+    <div class="simple-keyboard"></div>
+    <br/>
+        <button type="submit" class="btnSubmit">Request</button>
+  </div>
+</form>
+        <script >
+      const Keyboard = window.SimpleKeyboard.default;
+
+const myKeyboard = new Keyboard({
+  onChange: (input) => onChange(input),
+  onKeyPress: (button) => onKeyPress(button),
+  theme: "hg-theme-default keyboardDark",
+  layout: {
+    default: [
+      "1 2 3 4 5 6 7 8 9 0 {bksp}",
+    ],
+  }
+});
+
+function onChange(input) {
+  document.querySelector('#id_otp_token').value = input;
+}
+
+function onKeyPress(button) {
+}
+
+    </script>
+
+{% endblock content %}
+
+
+

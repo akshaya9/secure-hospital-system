@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+{% block navigation %}
+<li class="active">
+    <a href="{% url 'lab_staff' %} ">Home</a>
+</li>
+<li>
+    <a href="{% url 'lab_staff_search' %} ">View Patient Diagnosis</a>
+</li>
+<li>
+    <a href="{% url 'lab_tests' %} ">Test Records</a>
+</li>
+{% endblock navigation %} 
+
+{% block content%}
+<br>
+<div id="Appointments ">
+    {% for c in diag %}
+    <li>
+        <p>Diagnosis ID: {{c.diagnosisID}} </p>
+        <p>Diagnosis: {{ c.diagnosis}}</p>
+        <p>Test Recommendation: {{ c.recommendations}}</p>
+        <p>Doctor Name: {{ c.doctorName}}</p>
+    </li>
+    {% endfor %}
+</div>
+{% endblock content %}

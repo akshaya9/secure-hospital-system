@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block navigation %}
+<li>
+    <a href="{% url 'lab_staff' %} ">Home</a>
+</li>
+<li>
+    <a href="{% url 'lab_staff_search' %} ">View Patient Diagnosis</a>
+</li>
+<li>
+    <a href="{% url 'lab_tests' %} ">Test Records</a>
+</li>
+{% endblock %} 
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="note">
+      <p>Diagnosis</p>
+    </div>
+    <div class="form-content">
+      <div class="form-group">
+        {% render_field EditReportForm.result class="form-control" placeholder="Result" %}
+      </div>
+      <button type="submit" class="btnSubmit">Edit</button>
+    </div>
+</form>
+{% endblock %}

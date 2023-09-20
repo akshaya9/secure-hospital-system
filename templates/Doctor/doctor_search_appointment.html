@@ -1,0 +1,28 @@
+{% extends 'Doctor/doctor_navbar.html' %}
+
+{% block content %}
+
+</div>
+<br>
+<div>
+    {% for i in l %}
+    <br>
+    <li>
+        <th> {{ i.date }}</th>
+            <th> {{ i.time }}</th>
+            <th> {{ i.type }}</th>
+            <th> {{ i.patientID }}</th>
+            <th> {{ i.doctorID }}</th>
+            <th> {{ i.patientName }}</th>
+            <th> {{ i.doctorName }}</th>
+            <th> {{ i.status }}</th>
+            <th> {{ i.diagnosisID }}</th>
+            <th> {{ i.testID }}</th>
+            <th> {{ i.paymentID }}</th>
+            <th> {{ i.created_on }}</th>
+        <th>
+    </li>
+    {% endfor %}
+</div>
+
+{% endblock content%}

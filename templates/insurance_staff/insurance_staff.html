@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block title %}Hospital Staff{% endblock %} {% block navigation %}
+
+<li class="active">
+    <a href="{% url 'insurance_staff' %} "> Home</a>
+</li>
+<li>
+    <a href="{% url 'insurance_staff_review' %} ">Authorize Funds</a>
+</li>
+
+{% endblock %} {% block content%}
+<br>
+<div id="Appointments ">
+    {% for c in claims %}
+    <li>
+        <p>Patient Name: {{c.patientName}} </p>
+        <p>Insurance ID: {{ c.insuranceID}}</p>
+        <p>Amount: {{ c.amount}}</p>
+        <a href="{% url 'insurance_staff_approve' c.requestID %}">Approve</a>
+        <a href="{% url 'insurance_staff_reject' c.requestID %}">Reject</a>
+
+    </li>
+    {% endfor %}
+</div>
+
+{% if not claims %}
+<h1>There are no more claims to review</h1>
+{% endif %}{% endblock %}

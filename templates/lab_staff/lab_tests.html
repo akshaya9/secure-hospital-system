@@ -1,0 +1,58 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Insurance Staff Page</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+        
+        a:hover:not(.active) {
+            background-color: whitesmoke;
+        }
+    </style>
+
+</head> -->
+
+{% extends 'base.html' %} 
+{% block navigation %}
+<li>
+    <a href="{% url 'lab_staff' %} ">Home</a>
+</li>
+<li>
+    <a href="{% url 'lab_staff_search' %} ">View Patient Diagnosis</a>
+</li>
+<li class="active">
+    <a href="{% url 'lab_tests' %} ">Test Records</a>
+</li>
+{% endblock navigation %} 
+
+{% block content%}
+        <form action="/lab_tests/" method="GET">
+            <div style="font-size: 20px;">Please provide Patient ID or Patient Name: <input type="search" name="search"></div> <br>
+            <input type="Submit"  style="background-color: gray;">
+        </form>
+        <br>
+
+    </div>
+
+    <br>
+
+    <div>
+        {% for p in patients %}
+        <br>
+        <li>
+            <p>Test ID: {{ p.testID }}</p>
+            <p>Patient Name: {{ p.patientID }}</p>
+            <p>Date: {{ p.date }}</p>
+            <p>Test type: {{p.type}}</p>
+            <p>result: {{ p.result }}</p>
+            
+            <a href="{% url 'lab_update_record' p.testID %}"> <button>Update</span></button></a>
+            <a href="{% url 'lab_delete_record' p.testID %}"> <button>Delete</span></button></a>
+        </li>
+        {% endfor %}
+    </div>
+
+    {% endblock content %}

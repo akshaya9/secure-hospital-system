@@ -1,0 +1,30 @@
+{% extends 'Patient/patient.html' %}
+{% block content %}
+<!-- <body> -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h6 class="panel-title">Your Diagnosis</h6>
+            </div>
+            <table class="table table-hover" id="dev-table">
+                <thead>
+                    <tr>
+                        <th>diagnosisID</th>
+                        <th>doctor</th>
+                        <th>appointmentID</th>
+                        <th>diagnosis</th>
+                        <th>test_recommendation</th>
+                    </tr>
+                </thead>
+                {% for a in patient_diagnosis_details %}
+                <tr class="black-table-row">
+                    <td> {{a.diagnosisID}}</td>
+                    <td>{{a.doctorID.doctorID}}</td>
+                    <td> {{a.appointmentID.appointmentID}}</td>
+                    <td>{{a.diagnosis}}</td>
+                    <td>{{a.test_recommendation}}</td>
+                </tr>
+                {% endfor %}
+               
+            </table>
+        </div>
+{% endblock content %}

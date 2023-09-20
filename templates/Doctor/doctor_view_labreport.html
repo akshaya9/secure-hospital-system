@@ -1,0 +1,34 @@
+{% extends 'Doctor/doctor_navbar.html' %}
+{% block content %}
+
+    <br><br>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h6 class="panel-title">Your Lab reports</h6>
+            </div>
+            <table class="table table-hover" id="dev-table">
+                <thead>
+                    <tr>
+                        <th>testID</th>
+                        <th>date</th>
+                        <th>time</th>
+                        <th>status</th>
+                        <th>view report</th>
+                    </tr>
+                </thead>
+                {% for a in lab_test_details %}
+                <tr class="color_font">
+                    <td> {{a.testID}}</td>
+                    <td>{{a.date}}</td>
+                    <td>{{a.time}}</td>
+                    <td>{{a.status}}</td>
+                    <td> <a href="{% url 'doctor_view_labreport_view' a.testID %}"><i class="fa fa-file-pdf-o"></i> </a></td>
+                </tr>
+                {% endfor %}
+               
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+
+docotr view labreport

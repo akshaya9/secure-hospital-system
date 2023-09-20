@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block title %}Hospital Staff{% endblock %} {% block navigation %}
+<li>
+    <a href="{% url 'hospital_staff_appointments' %} ">Appointments</a>
+</li>
+<li class="active">
+    <a href="{% url 'hospital_staff_create_payment' %} ">Create Payment</a>
+</li>
+<li>
+    <a href="{% url 'hospital_search_patients' %} ">View Patient Records</a>
+</li>
+<li>
+    <a href="{% url 'hospital_generate_bill' %} ">
+        Generate Bill</a
+    >
+</li>
+{% endblock %} {% block content%}
+<div id="Appointments">
+    <h2>Appointments:</h2>
+    {% for app in appointments %}
+    <li>
+        <p>Patient Name: {{ app.patientName }}</p>
+        <p>Type: {{ app.type}}</p>
+        <p>Date: {{ app.date}}</p>
+        <p>Time: {{ app.time}}</p>
+        <p>Doctor: {{ app.doctorName }}</p>
+        <p>Status: {{ app.status }}</p>
+        <a href="{% url 'hospital_complete_appointment' app.appointmentID %}">Complete Payment</a>
+</li>
+{% endfor %}
+</div>
+
+<div id="Tests">
+    <h2>Tests:</h2>
+    {% for test in tests %}
+    <li>
+        <p>Patient ID: {{ test.patientID.patientID }}</p>
+        <p>Type: {{ test.type}}</p>
+        <p>Date: {{ test.date}}</p>
+        <p>Time: {{ test.time}}</p>
+        <p>Status: {{ test.status }}</p>
+        <a href="{% url 'hospital_test_transaction' test.testID %}">Complete Payment</a>
+    </li>
+    {% endfor %}
+</div>
+
+{% if not appointments and not tests %}
+<h1>There are no pending appointments and tests</h1>
+{% endif%} {% endblock %}

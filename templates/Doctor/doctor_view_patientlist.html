@@ -1,0 +1,44 @@
+{% extends 'Doctor/doctor_navbar.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <center>
+    <h2>Patient Records</h2>
+  <table>
+    <tr>
+        <th>Appointment ID</th>
+        <th>Name</th>
+        <th>Patient ID</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Height</th>
+        <th>Weight</th>
+        <!-- <th>Diag ID</th> -->
+        <th>Diagnosis</th>
+        <th>Lab Test Recommendation</th>
+        <th>View Lab Test Report</th>
+        <th>Prescription</th>
+        <th>Update</th>
+      </tr>
+      {% for i in patients %}
+      <tr>
+        <th>{{ i.appointmentID }}</th>
+        <th> {{ i.name }}</th>
+        <th> {{ i.patientID }}</th>
+        <th> {{ i.age }}</th>
+        <th> {{ i.gender }}</th>
+        <th> {{ i.height }}</th>
+        <th> {{ i.weight }}</th>
+        <!-- <th> {{ i.diagnosisID }} -->
+        <th> {{ i.diagnosis }}  <a href="{% url 'doctor_patient_diagnosis' i.appointmentID %}"> <button>Edit</span></button></a>  <a href="{% url 'doctor_delete_diagnosis' i.appointmentID %}"> <button>Delete</span></button></a></th>
+        <th> {{ i.test_recommendation }}  <a href="{% url 'doctor_recommend_labtest_view' i.appointmentID %}"> <button>Edit</span></button></a></th>
+        <th> <a href="{% url 'doctor_view_labreport_view' i.testID %}"><i class="fa fa-file-pdf-o"></i> </a> </th>
+        <th> {{ i.prescription }} <a href="{% url 'doctor_create_prescription' i.appointmentID %}"> <button>Edit</span></button></a> </th>
+        <th> <a href="{% url 'doctor_update_patients' i.patientID %}"> <button>Update</span></button></a> </th>
+
+      </tr> 
+      {% endfor %}
+</table>
+</center>
+</body>
+{% endblock content%}

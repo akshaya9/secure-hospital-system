@@ -1,0 +1,45 @@
+{% extends 'Patient/patient.html' %} 
+{% block navigation %}
+<li class="active">
+  <a href="{% url 'patient_appointment' user.username %}">Appointments</a>
+</li>
+<li>
+  <a href="{% url 'patient_diagnosis' user.username %}">Diagnosis</a>
+</li>
+<li>
+  <a href="{% url 'patient_prescription' user.username %}">Prescription</a>
+</li>
+<li>
+  <a href="{% url 'patient_labtest' user.username %}">Lab Tests</a>
+</li>
+<li>
+  <a href="{% url 'patient_details' user.username %}">Patient Details</a>
+</li>
+<li>
+  <a href="{% url 'patient_payments' user.username %}">Payment and Transactions</a>
+</li>
+{% endblock navigation %} 
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-xl-6">
+      <div class="card-block">
+        <a href="patient-view-appointment/{{user.username}}">
+          <h4 class="m-b-20">View Your Appointment</h4>
+        </a>
+        <h1 class="text-right"><i class="fas fa-calendar f-left"></i></h1>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-xl-6">
+      <div class="card-block">
+        <a href="patient_book_appointment/{{user.username}}">
+          <h4 class="m-b-20">Book Appointment</h4>
+        </a>
+        <h1 class="text-right"><i class="fas fa-book-medical f-left"></i></h1>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

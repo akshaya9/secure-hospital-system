@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block title %}Hospital Staff{% endblock %} 
+{% block navigation %}
+<li>
+    <a href="{% url 'lab_staff' %} ">Home</a>
+</li>
+<li class="active">
+    <a href="{% url 'lab_staff_search' %} ">View Patient Diagnosis</a>
+</li>
+<li>
+    <a href="{% url 'lab_tests' %} ">Test Records</a>
+</li>
+
+{% endblock navigation %}
+
+{% block content%}
+<br> 
+<div>
+
+    <form action="/lab_staff_search/" method="GET">
+        <div style="font-size: 20px;">Please provide Patient ID or Patient Name: <input type="search" name="search"></div> <br>
+        <input type="Submit">
+    </form>
+    <br>
+
+</div>
+<br>
+<div>
+    {% for p in patients %}
+    <br>
+    <li>
+        <p><a href="{% url 'lab_search_details' p.patientID %}">Patient ID: {{ p.patientID }}</a></p>
+        <p>Patient Name: {{ p.name }}</p>
+    </li>
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,2 +1,2 @@
 # secure-hospital-system
-Secure Hospital System: Cloud-based hospital management with role-based features (appointments, records, diagnostics, payments) using Django, blockchain, Keras/NLTK chatbot, and JavaScript UI.
+The Secure Hospital System project is a cloud-based hospital management system. It offers secure, role-based functionalities for patients, doctors, hospital staff, lab staff, insurance staff, and admins, with features like appointment scheduling, record access, diagnostics, payments, and more. Utilizing technologies like Django for user management, blockchain for data security, Keras and NLTK for a chatbot, and JavaScript for the user interface.

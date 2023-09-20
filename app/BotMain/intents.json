@@ -1,0 +1,63 @@
+{"intents": [
+        {"tag": "greeting",
+         "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day"],
+         "responses": ["Hi there, how can I help?"],
+         "context": [""]
+        },
+        {"tag": "goodbye",
+         "patterns": ["Bye", "See you later", "Goodbye", "Nice chatting to you, bye", "Till next time"],
+         "responses": ["See you!", "Have a nice day", "Bye! Come back again soon."],
+         "context": [""]
+        },
+        {"tag": "thanks",
+         "patterns": ["Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me"],
+         "responses": ["Happy to help!", "Any time!", "My pleasure"],
+         "context": [""]
+        },
+        {"tag": "noanswer",
+         "patterns": ["", " "],
+         "responses": ["Sorry, can't understand you", "Please give me more info", "Not sure I understand"],
+         "context": [""]
+        },
+        {"tag": "personal details",
+         "patterns": ["view my personal information", "view my personal details", "show my personal details", "view patient information", "view patient details"],
+         "responses": ["Navigate to:https://harshavamsi.com/patient_details"],
+         "context": [""]
+        },
+        {"tag": "update personal information",
+         "patterns": ["update my personal information", "update my address", "update my mobile number", "update my name", "update personal details" ],
+         "responses": ["Navigate to:https://harshavamsi.com/patient_details/update_patient_details"],
+         "context": [""]
+        },
+        {"tag": "appointment",
+         "patterns": ["book an appointment", "view appointment", "show appointment"],
+         "responses": ["Navigate to:https://harshavamsi.com/patient_appointment"],
+         "context": [""]
+        },
+        {"tag": "diagnosis",
+         "patterns": ["view diagnosis", "show diagnosis"],
+         "responses": ["Navigate to:https://harshavamsi.com/patient_diagnosis"],
+         "context": [""]
+        },
+        {"tag": "view lab tests",
+         "patterns": ["view lab reports", "view lab tests", "show lab reports", "show lab tests"],
+         "responses": ["Navigate to:https://harshavamsi.com/patient_labtest/patient_view_lab_report"],
+         "context": [""]
+        },
+        {"tag": "request lab test",
+         "patterns": ["Request lab test", "book lab test"],
+         "responses": ["Navigate to:https://harshavamsi.com/patient_labtest/request_labtest"],
+         "context": [""]
+        },
+        {"tag": "prescription",
+         "patterns": ["view prescriptions","show prescriptions"],
+         "responses": ["Navigate to:https://harshavamsi.com/patient_prescription"],
+         "context": [""]
+        },
+        {"tag": "payments and transactions",
+                "patterns": ["view payments","show payments","view transactions", "make a payment", "show my transactions"],
+                "responses": ["Navigate to:https://harshavamsi.com/patient_payments"],
+                "context": [""]
+        }
+   ]
+}
